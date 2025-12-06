@@ -11,6 +11,7 @@
   "dependencies": {
     "next": "16.0.5",
     "ogl": "^1.0.11",
+    "posthog-js": "^1.302.2",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
