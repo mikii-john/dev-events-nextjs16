@@ -179,7 +179,7 @@
     }
 
     .title {
-      @apply text-[20px] font-semibold line-clamp-1;
+      @apply text-[20px] font-semibold;
     }
 
     p {

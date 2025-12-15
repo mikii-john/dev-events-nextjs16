@@ -9,9 +9,11 @@ interface Props {
     location: string;
     description: string;
     time: string;
+    mode: string;
+    audience: string;
 }
 
-const EventCard = ({ title, image, slug, location, date, time }: Props) => {
+const EventCard = ({ title, image, slug, location, date, time, mode, audience }: Props) => {
   return (
     <Link href={`/events/${slug}`} id="event-card" className="block">
         <div className="relative">

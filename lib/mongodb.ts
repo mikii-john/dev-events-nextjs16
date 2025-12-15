@@ -9,8 +9,8 @@ interface MongooseCache {
 // Extend the Node.js global type with our custom cache property so TypeScript
 // knows it exists. This file only runs on the server.
 declare global {
-  // eslint-disable-next-line no-var
   // Using `var` here ensures the property is attached to the actual Node.js global object.
+  // eslint-disable-next-line no-var
   var _mongooseCache: MongooseCache | undefined;
 }
 
@@ -31,14 +31,12 @@ if (!globalForMongoose._mongooseCache) {
   globalForMongoose._mongooseCache = cached;
 }
 
-// MongoDB connection string. It should be defined in your environment, for example:
-// - In Next.js App Router: in `.env.local` as `MONGODB_URI="..."`
-// - On your hosting platform: as a server-side environment variable
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
-  // Failing fast here prevents your app from starting in an invalid state.
-  throw new Error('MONGODB_URI environment variable is not set.');
+  throw new Error(
+    'Please define the MONGODB_URI environment variable inside .env.local',
+  );
 }
 
 // Centralized connection options for Mongoose. Adjust as needed for your setup.
@@ -46,6 +44,7 @@ const mongooseOptions: ConnectOptions = {
   // Disable Mongoose's internal command buffering so that operations fail fast
   // if the connection is not ready instead of hanging indefinitely.
   bufferCommands: false,
+  dbName: 'nextjs-mini-project',
 };
 
 /**
